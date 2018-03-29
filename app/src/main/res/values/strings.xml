@@ -13,4 +13,10 @@
     <string name="result_text">Hasil kalkulasi 2^%s adalah %s</string>
     <string name="calculate_result_text">Penjumlahan %s memiliki hasil: %s</string>
     <string name="number_hint">Isi Pangkat</string>
+    <string name="yeay_text">yeay!</string>
+    <string name="list_number_hint">Masukkan 2 inputan angka</string>
+    <string name="bil_1_hint">Bilangan pertama</string>
+    <string name="bil_2_hint">Bilangan kedua</string>
+    <string name="btn_generate_text">generate</string>
+    <string name="list_title_text">List angka yang sesuai</string>
 </resources>

@@ -19,4 +19,9 @@
     <string name="bil_2_hint">Bilangan kedua</string>
     <string name="btn_generate_text">generate</string>
     <string name="list_title_text">List angka yang sesuai</string>
+    <string name="name_example">Example</string>
+    <string name="phone_number_example">08123456789</string>
+    <string name="email_text">Email: %s</string>
+    <string name="address_text">Address: \n%s</string>
+    <string name="version_text">version: %s</string>
 </resources>

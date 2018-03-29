@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.juniar.nostraassessment.calculate.CalculateFragment;
+import com.juniar.nostraassessment.contact.ContactFragment;
 import com.juniar.nostraassessment.listnumber.ListNumberFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -76,7 +77,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragment=new ListNumberFragment();
             getSupportActionBar().setTitle(R.string.list_number_text);
         } else if (id == R.id.nav_contact) {
-
+            fragment=new ContactFragment();
+            getSupportActionBar().setTitle(R.string.contact_text);
         }
 
         if(fragment!=null){
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

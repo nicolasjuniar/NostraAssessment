@@ -14,4 +14,5 @@
     <dimen name="dimen_8dp">8dp</dimen>
     <dimen name="dimen_1dp">1dp</dimen>
     <dimen name="dimen_90dp">90dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
 </resources>

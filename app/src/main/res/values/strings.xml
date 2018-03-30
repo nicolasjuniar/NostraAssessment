@@ -24,4 +24,17 @@
     <string name="email_text">Email: %s</string>
     <string name="address_text">Address: \n%s</string>
     <string name="version_text">version: %s</string>
+    <string name="name_hint">Name</string>
+    <string name="address_hint">Address</string>
+    <string name="phone_hint">Phone</string>
+    <string name="email_hint">Email</string>
+    <string name="version_hint">Version</string>
+    <string name="button_update_text">Update</string>
+    <string name="button_delete_text">Delete</string>
+    <string name="button_add_text">Add</string>
+    <string name="invalid_name_text">Nama tidak boleh kosong</string>
+    <string name="invalid_address_text">Alamat tidak boleh kosong</string>
+    <string name="invalid_email_text">Isi email kamu dengan benar</string>
+    <string name="invalid_phone_text">Isi nomor telepon kamu dengan benar</string>
+    <string name="invalid_version_text">Versi tidak boleh kosong</string>
 </resources>

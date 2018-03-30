@@ -30,45 +30,6 @@ public class ContactPresenter {
                 }));
     }
 
-    void insertContact(InsertContactRequest request) {
-        compositeDisposable.add(NetworkUtils.createService(NetworkApi.class)
-                .insertContact(request)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<InsertContactResponse>() {
-                    @Override
-                    public void accept(InsertContactResponse insertContactResponse) throws Exception {
-
-                    }
-                }));
-    }
-
-    void updateContact(String secureId, UpdateContactRequest request) {
-        compositeDisposable.add(NetworkUtils.createService(NetworkApi.class)
-                .updateContact(secureId, request)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<UpdateContactResponse>() {
-                    @Override
-                    public void accept(UpdateContactResponse updateContactResponse) throws Exception {
-
-                    }
-                }));
-    }
-
-    void deleteContact(String secureId) {
-        compositeDisposable.add(NetworkUtils.createService(NetworkApi.class)
-                .deleteContact(secureId)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<DeleteContactResponse>() {
-                    @Override
-                    public void accept(DeleteContactResponse deleteContactResponse) throws Exception {
-
-                    }
-                }));
-    }
-
     void onDestroyPresenter() {
         compositeDisposable.clear();
     }

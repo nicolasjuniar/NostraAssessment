@@ -1,9 +1,6 @@
 package com.juniar.nostraassessment.contact;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.juniar.nostraassessment.R;
 
 import java.util.ArrayList;
-
-import static com.juniar.nostraassessment.contact.ContactFragment.EDIT_CONTACT;
-import static com.juniar.nostraassessment.contact.EditContactActivity.ACTION;
-import static com.juniar.nostraassessment.contact.EditContactActivity.CONTACT;
-import static com.juniar.nostraassessment.contact.EditContactActivity.EDIT;
 
 /**
  * Created by Nicolas Juniar on 14/11/2016.
@@ -29,13 +20,15 @@ import static com.juniar.nostraassessment.contact.EditContactActivity.EDIT;
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
     ArrayList<ContactModel> listContact;
-    Fragment fragment;
+    Context context;
 
     public View view;
+    ContactClick callback;
 
-    public ContactAdapter(ArrayList<ContactModel> listContact, Fragment fragment) {
+    public ContactAdapter(ArrayList<ContactModel> listContact, Context context, ContactClick callback) {
         this.listContact = listContact;
-        this.fragment=fragment;
+        this.context = context;
+        this.callback = callback;
     }
 
     @Override
@@ -53,7 +46,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         holder.tvEmail.setText(contact.getEmail());
         holder.tvAddress.setText(contact.getAddress());
         holder.tvVersion.setText(String.valueOf(contact.getVersion()));
-        Glide.with(fragment)
+        Glide.with(context)
                 .load(contact.getPicture())
                 .into(holder.ivContact);
     }
@@ -66,6 +59,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    interface ContactClick {
+        void onContactClicked(ContactModel contact);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -88,11 +85,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), EditContactActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra(CONTACT, new Gson().toJson(contact));
-                    intent.putExtra(ACTION, EDIT);
-                    fragment.startActivityForResult(intent, EDIT_CONTACT);
+                    callback.onContactClicked(contact);
                 }
             });
         }

@@ -12,16 +12,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.juniar.nostraassessment.R;
 
 import java.util.ArrayList;
 
 import static com.juniar.nostraassessment.contact.EditContactActivity.ACTION;
 import static com.juniar.nostraassessment.contact.EditContactActivity.ADD;
+import static com.juniar.nostraassessment.contact.EditContactActivity.CONTACT;
+import static com.juniar.nostraassessment.contact.EditContactActivity.EDIT;
 
-public class ContactFragment extends Fragment implements ContactView {
+public class ContactFragment extends Fragment implements ContactView, ContactAdapter.ContactClick {
 
     ContactPresenter presenter;
     ContactAdapter adapter;
@@ -41,7 +43,7 @@ public class ContactFragment extends Fragment implements ContactView {
         fabAdd = view.findViewById(R.id.fab_add);
         presenter = new ContactPresenter(this);
         listContact = new ArrayList<>();
-        adapter = new ContactAdapter(listContact, this);
+        adapter = new ContactAdapter(listContact, getActivity(), this);
         rvContact.setAdapter(adapter);
         rvContact.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -71,7 +73,6 @@ public class ContactFragment extends Fragment implements ContactView {
         if (requestCode == EDIT_CONTACT) {
             if (resultCode == Activity.RESULT_OK) {
                 presenter.getListContact();
-                Toast.makeText(getActivity(), "metu dab", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -89,5 +90,13 @@ public class ContactFragment extends Fragment implements ContactView {
     public void onDestroy() {
         super.onDestroy();
         presenter.onDestroyPresenter();
+    }
+
+    @Override
+    public void onContactClicked(ContactModel contact) {
+        Intent intent = new Intent(getActivity(), EditContactActivity.class);
+        intent.putExtra(CONTACT, new Gson().toJson(contact));
+        intent.putExtra(ACTION, EDIT);
+        startActivityForResult(intent, EDIT_CONTACT);
     }
 }

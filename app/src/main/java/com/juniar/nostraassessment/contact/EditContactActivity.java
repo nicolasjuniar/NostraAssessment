@@ -1,6 +1,8 @@
 package com.juniar.nostraassessment.contact;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -174,17 +176,43 @@ public class EditContactActivity extends AppCompatActivity implements EditContac
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pbLoading.setVisibility(View.VISIBLE);
-                UpdateContactRequest request = new UpdateContactRequest(etName.getText().toString(), etAddress.getText().toString(), etPhone.getText().toString(), etEmail.getText().toString(), Integer.parseInt(etVersion.getText().toString()));
-                presenter.updateContact(contact.getId(), request);
+                new AlertDialog.Builder(EditContactActivity.this)
+                        .setTitle(R.string.update_contact_title)
+                        .setMessage(getString(R.string.update_contact_message, contact.getName()))
+                        .setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                pbLoading.setVisibility(View.VISIBLE);
+                                UpdateContactRequest request = new UpdateContactRequest(etName.getText().toString(), etAddress.getText().toString(), etPhone.getText().toString(), etEmail.getText().toString(), Integer.parseInt(etVersion.getText().toString()));
+                                presenter.updateContact(contact.getId(), request);
+                            }
+                        }).setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
             }
         });
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pbLoading.setVisibility(View.VISIBLE);
-                presenter.deleteContact(contact.getId());
+                new AlertDialog.Builder(EditContactActivity.this)
+                        .setTitle(R.string.delete_contact_title)
+                        .setMessage(getString(R.string.delete_contact_message, contact.getName()))
+                        .setPositiveButton(getString(R.string.dialog_yes), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                pbLoading.setVisibility(View.VISIBLE);
+                                presenter.deleteContact(contact.getId());
+                            }
+                        }).setNegativeButton(getString(R.string.dialog_no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
             }
         });
     }

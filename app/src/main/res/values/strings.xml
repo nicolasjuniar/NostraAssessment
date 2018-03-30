@@ -37,4 +37,10 @@
     <string name="invalid_email_text">Isi email kamu dengan benar</string>
     <string name="invalid_phone_text">Isi nomor telepon kamu dengan benar</string>
     <string name="invalid_version_text">Versi tidak boleh kosong</string>
+    <string name="update_contact_title">Update Contact</string>
+    <string name="dialog_yes">Ya</string>
+    <string name="update_contact_message">Apakah anda yakin ingin mengupdate contact %s ?</string>
+    <string name="dialog_no">Tidak</string>
+    <string name="delete_contact_title">Delete Contact</string>
+    <string name="delete_contact_message">Apakah anda yakin ingin menghapus contact %s ?</string>
 </resources>
